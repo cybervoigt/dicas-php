@@ -7,13 +7,17 @@
  */
 
 $text = "Santa Cruz do Sul, RS, Brazil";
-$find = 'a';
 
-function count_char($text, $find, $i)
+//testing...
+$find = 'a';
+$expected_result = 3;
+
+
+function recursive_count_char($text, $find, $i)
 {
     if($i < strlen($text))
     {
-        return (($text[$i] == $find) ? 1 : 0) + count_char($text, $find, $i+=1);
+        return (($text[$i] == $find) ? 1 : 0) + recursive_count_char($text, $find, $i+=1);
     }
     else
     {
@@ -21,8 +25,16 @@ function count_char($text, $find, $i)
     }
 }
 
-$result = count_char($text, $find, 0);
+$result = recursive_count_char($text, $find, 0);
 
-echo "<p>Found '{$find}' in '{$text}': {$result} </p>";
+if($result == $expected_result)
+{
+    echo "<p>Found '{$find}' in '{$text}': {$result} </p>";
+}
+else
+{
+    echo "<p>Something went wrong... because {$result} is different than {$expected_result}</p>";
+}
+
 
 ?>
